@@ -13,7 +13,6 @@ interface Props {
 }
 
 export default function Home({ posts }: Props) {
-  console.log(posts)
   return (
     <div className="max-w-7xl mx-auto">
       <Head>
@@ -46,7 +45,7 @@ export default function Home({ posts }: Props) {
   );
 }
 
-export const getServersideProps = async () => {
+export const getServerSideProps = async () => {
 	const query = `*[_type == "post"]{
 	  _id,
 	  title,
@@ -59,10 +58,13 @@ export const getServersideProps = async () => {
 	  mainImage,
 	  publishedAt
 	}`;
+
 	const posts = await sanityClient.fetch(query);
+
 	return {
 		props: {
-			posts
-		}
-	}
+			posts,
+		},
+	};
+
 }
