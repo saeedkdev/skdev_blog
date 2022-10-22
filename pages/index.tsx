@@ -1,16 +1,19 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { sanityClient, urlFor } from '../sanity'
+import Link from 'next/link'
+
+import { sanityClient, urlFor } from "../sanity"
 
 import Header from '../components/Header'
 import { Post } from '../typings'
 
 interface Props {
-	posts: Post[]
+	posts: [Post];
 }
 
 export default function Home({ posts }: Props) {
+  console.log(posts)
   return (
     <div className="max-w-7xl mx-auto">
       <Head>
@@ -28,11 +31,19 @@ export default function Home({ posts }: Props) {
 		<img className="hidden md:inline-flex h-32 lg:h-full" src="/sk.png" alt="sk" />
 	  </div>
 
-	{/* Posts */}
-
+	{/* if posts not undefined */}
+	<div>
+		{posts && posts.map((post) => (
+			<Link href={`/blog/${post.slug.current}`} key={post._id}>
+				<div>
+					<img src={urlFor(post.mainImage).url()} alt={post.title} />
+				</div>
+			</Link>
+		))}
+	</div>
 
     </div>
-  )
+  );
 }
 
 export const getServersideProps = async () => {
