@@ -21,6 +21,10 @@ const Home: NextPage = () => {
 		</div>
 		<img className="hidden md:inline-flex h-32 lg:h-full" src="/sk.png" alt="sk" />
 	  </div>
+
+	{/* Posts */}
+
+
     </div>
   )
 }
