@@ -1,11 +1,13 @@
 import Link from 'next/link'
+import { FiGithub } from 'react-icons/fi'
 
 function Header() {
   return (
 	<header className="flex justify-between p-5 max-w-7xl mx-auto">
 		<div className="flex items-center space-x-5">
 			<Link href="/">
-				<img className="w-44 object-contain cursor-pointer" src="/skdev-sm.png" alt="skdev-blog" />
+				{/* <img className="w-44 object-contain cursor-pointer" src="/skdev-sm.png" alt="skdev-blog" /> */}
+				<h1 className="text-4xl cursor-pointer font-serif">skdev</h1>
 			</Link>
 			<div className="hidden md:inline-flex items-center space-x-5">
 				<Link href="/">
@@ -19,9 +21,10 @@ function Header() {
 				</Link>
 			</div>
 		</div>
-		<div className="invisible flex items-center space-x-5 text-green-600">
-			<h3>Sign In</h3>
-			<h3 className="border px-4 py-1 rounded-full boder-green-600">Get Started</h3>
+		<div className="flex items-center space-x-5 text-slate-600">
+			<a target="_blank" href="http://github.com/saeedkdev" className="border px-4 py-1 flex rounded-full border-slate-600 hover:bg-slate-600 hover:text-white transition">
+				<FiGithub className="mt-1 mr-2" />  saeedkdev
+			</a>
 		</div>
 	</header>
   );

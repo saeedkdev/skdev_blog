@@ -20,7 +20,7 @@ export default function Home({ posts }: Props) {
 		<link rel="icon" href="/favicon.png" />
       </Head>
 	  <Header />
-	  <div className="flex justify-between items-center bg-yellow-400 border-y border-black py-10 lg:py-0">
+	  <div className="flex justify-between items-center bg-gradient-to-r from-yellow-400 to-yellow-300 border-y border-black py-10 lg:py-0">
 		<div className="px-10 space-y-5">
 			<h1 className="text-6xl max-w-xl font-serif">
 				<span className="underline decoration-black decoration-4">skdev</span> is a my personal blog
@@ -40,7 +40,7 @@ export default function Home({ posts }: Props) {
 					<div className="flex justify-between p-5 bg-white">
 						<div>
 							<p className="text-lg font-bold">{post.title}</p>
-							<p className="text-xs">{post.description} by {post.author.name}</p>
+							<p className="text-xs">{post.description}</p>
 						</div>
 						<img className="h-12 w-12 rounded-full" src={urlFor(post.author.image).url()!} alt={post.author.name} />
 					</div>
