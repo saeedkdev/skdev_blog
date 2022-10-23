@@ -1,4 +1,4 @@
-import GetStaticProps from "next";
+import { GetStaticProps } from 'next'
 import { sanityClient, urlFor } from "../../sanity";
 import { Post } from "../../typings";
 import Header from "../../components/Header";
