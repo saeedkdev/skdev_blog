@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import Head from "next/head";
 import PortableText from "react-portable-text";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
 
 interface IFormInput {
 	_id: string;
@@ -18,6 +19,8 @@ interface Props {
 }
 
 export default function Blog(props: Props) {
+	const [ submitted, setSubmitted ] = useState(false);
+
 	const { post } = props;
 	const {
 		register,
@@ -25,21 +28,26 @@ export default function Blog(props: Props) {
 		formState: { errors },
 	} = useForm<IFormInput>();
 
-	const onSubmit: SubmitHandler<IFormInput> = async(data) => {
+	const onSubmit: SubmitHandler<IFormInput> = async (data) => {
 		await fetch("/api/createComment", {
 			method: "POST",
 			body: JSON.stringify(data),
-		}).then((res) => {
-			console.log(data);
-		}).catch((err) => {
-			console.log(err);
-		});
+		})
+			.then((res) => {
+				console.log(data);
+				setSubmitted(true);
+			})
+			.catch((err) => {
+				console.log(err);
+				setSubmitted(false);
+			});
 	};
 
 	return (
 		<main>
 			<Head>
 				<title>skdev | {post.title}</title>
+				<link rel="icon" href="/favicon.png" />
 			</Head>
 			<Header />
 			<img
@@ -100,64 +108,90 @@ export default function Blog(props: Props) {
 				</div>
 			</article>
 			<hr className="max-w-lg my-5 mx-auto border border-yellow-500" />
-			<form 
-			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col p-5 my-10 max-w-2xl mx-auto mb-10">
-				<h2 className="text-3xl font-bold">Leave a comment below</h2>
-
-				<input 
-				type="hidden" 
-				{...register("_id")}
-				name="_id"
-				value={post._id}/>
-
-				<label className="block mb-5">
-					<span className="text-gray-700">Name</span>
-					<input
-						{...register("name", { required: true })}
-						className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-yellow-500 outline-none focus:ring"
-						placeholder="Type your name"
-						type="text"
-					/>
-				</label>
-				<label className="block mb-5">
-					<span className="text-gray-700">Email</span>
-					<input
-						{...register("email", { required: true })}
-						className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-yellow-500 outline-none focus:ring"
-						placeholder="email@example.com"
-						type="email"
-					/>
-				</label>
-				<label className="block mb-5">
-					<span className="text-gray-700">Comment</span>
-					<textarea
-						{...register("comment", { required: true })}
-						className="shadow rounded border py-2 px-3 form-textarea mt-1 block w-full ring-yellow-500 outline-none focus:ring"
-						rows={6}
-						placeholder="What did you think?"
-					/>
-				</label>
-				{/* valication errors */}
-				<div className="flex flex-col p-5">
-					{errors.name && (
-						<p className="text-red-500 ">
-							- Please enter your name
-						</p>
-					)}
-					{errors.email && (
-						<p className="text-red-500">
-							- Please enter your email
-						</p>
-					)}
-					{errors.comment && (
-						<p className="text-red-500">
-							- Please enter your comment
-						</p>
-					)}
+			{submitted ? (
+				<div className="flex flex-col p-10 my-10 bg-yellow-500 text-white max-w-2xl mx-auto">
+					<h3 className="text-3xl font-bold">Thank you for your comment</h3>
+					<p>once it has been approved you will see it in the comment section</p>
 				</div>
-				<input type="submit" className="shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outlinefocus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer" value="Submit" />
-			</form>
+			) : (
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className="flex flex-col p-5 my-10 max-w-2xl mx-auto mb-10"
+				>
+					<h2 className="text-3xl font-bold">
+						Leave a comment below
+					</h2>
+
+					<input
+						type="hidden"
+						{...register("_id")}
+						name="_id"
+						value={post._id}
+					/>
+
+					<label className="block mb-5">
+						<span className="text-gray-700">Name</span>
+						<input
+							{...register("name", { required: true })}
+							className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-yellow-500 outline-none focus:ring"
+							placeholder="Type your name"
+							type="text"
+						/>
+					</label>
+					<label className="block mb-5">
+						<span className="text-gray-700">Email</span>
+						<input
+							{...register("email", { required: true })}
+							className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-yellow-500 outline-none focus:ring"
+							placeholder="email@example.com"
+							type="email"
+						/>
+					</label>
+					<label className="block mb-5">
+						<span className="text-gray-700">Comment</span>
+						<textarea
+							{...register("comment", { required: true })}
+							className="shadow rounded border py-2 px-3 form-textarea mt-1 block w-full ring-yellow-500 outline-none focus:ring"
+							rows={6}
+							placeholder="What did you think?"
+						/>
+					</label>
+					{/* valication errors */}
+					<div className="flex flex-col p-5">
+						{errors.name && (
+							<p className="text-red-500 ">
+								- Please enter your name
+							</p>
+						)}
+						{errors.email && (
+							<p className="text-red-500">
+								- Please enter your email
+							</p>
+						)}
+						{errors.comment && (
+							<p className="text-red-500">
+								- Please enter your comment
+							</p>
+						)}
+					</div>
+					<input
+						type="submit"
+						className="shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outlinefocus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
+						value="Submit"
+					/>
+				</form>
+			)}
+
+			<div className="flex flex-col p-10 my-10 max-w-2xl mx-auto shadow-yellow-500 shadow space-y-2">
+				<h3 className="text-3xl">Comments</h3>
+				<hr className="pb-2" />
+				{post.comments.map((comment: any) => (
+					<div key={comment._id} className="">
+						<p><span className="text-yellow-500">{comment.name}</span> : {comment.comment}</p>
+					</div>
+				))}
+			</div>
+
 		</main>
 	);
 }
