@@ -72,7 +72,7 @@ export default function Blog(props: Props) {
 						| {new Date(post.publishedAt).toLocaleString()}
 					</p>
 				</div>
-				<div className="pt-5">
+				<div className="pt-5 leading-loose">
 					<PortableText
 						dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
 						projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!}
@@ -87,13 +87,34 @@ export default function Blog(props: Props) {
 							),
 							h2: (props: any) => (
 								<h2
-									className="text-xl font-bold my-5"
+									className="text-2xl font-bold my-5"
 									{...props}
 								/>
 							),
+                            h3: (props: any) => (
+                                <h3
+                                    className="text-xl font-bold my-5"
+                                    {...props}
+                                />
+                            ),
+                            h4: (props: any) => (
+                                <h4
+                                    className="text-lg font-bold my-5"
+                                    {...props}
+                                />
+                            ),
+                            p: (props: any) => (
+                                <p
+                                    className="my-5" 
+                                    {...props}
+                                />
+                            ),
 							li: ({ children }: any) => (
 								<li className="ml-4 list-disc">{children}</li>
 							),
+                            ol: ({ children }: any) => (
+                                <ol className="ml-4 list-decimal">{children}</ol>
+                            ),
 							link: ({ href, children }: any) => (
 								<a
 									href={href}
@@ -107,7 +128,7 @@ export default function Blog(props: Props) {
 					/>
 				</div>
 			</article>
-			<hr className="max-w-lg my-5 mx-auto border border-yellow-500" />
+			<hr className="max-w-lg my-5 mx-auto border border-red-500" />
 			{submitted ? (
 				<div className="flex flex-col p-10 my-10 bg-yellow-500 text-white max-w-2xl mx-auto">
 					<h3 className="text-3xl font-bold">Thank you for your comment</h3>
@@ -133,7 +154,7 @@ export default function Blog(props: Props) {
 						<span className="text-gray-700">Name</span>
 						<input
 							{...register("name", { required: true })}
-							className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-yellow-500 outline-none focus:ring"
+							className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-red-500 outline-none focus:ring"
 							placeholder="Type your name"
 							type="text"
 						/>
@@ -142,7 +163,7 @@ export default function Blog(props: Props) {
 						<span className="text-gray-700">Email</span>
 						<input
 							{...register("email", { required: true })}
-							className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-yellow-500 outline-none focus:ring"
+							className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-red-500 outline-none focus:ring"
 							placeholder="email@example.com"
 							type="email"
 						/>
@@ -151,7 +172,7 @@ export default function Blog(props: Props) {
 						<span className="text-gray-700">Comment</span>
 						<textarea
 							{...register("comment", { required: true })}
-							className="shadow rounded border py-2 px-3 form-textarea mt-1 block w-full ring-yellow-500 outline-none focus:ring"
+							className="shadow rounded border py-2 px-3 form-textarea mt-1 block w-full ring-red-500 outline-none focus:ring"
 							rows={6}
 							placeholder="What did you think?"
 						/>
@@ -176,13 +197,13 @@ export default function Blog(props: Props) {
 					</div>
 					<input
 						type="submit"
-						className="shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outlinefocus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
+						className="shadow bg-gradient-to-r from-red-400 to-red-300 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
 						value="Submit"
 					/>
 				</form>
 			)}
 
-			<div className="flex flex-col p-10 my-10 max-w-2xl mx-auto shadow-yellow-500 shadow space-y-2">
+			<div className="flex flex-col p-10 my-10 max-w-2xl mx-auto shadow-red-500 shadow space-y-2">
 				<h3 className="text-3xl">Comments</h3>
 				<hr className="pb-2" />
 				{post.comments.map((comment: any) => (

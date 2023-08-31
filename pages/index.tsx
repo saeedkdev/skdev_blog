@@ -20,7 +20,7 @@ export default function Home({ posts }: Props) {
 		<link rel="icon" href="/favicon.png" />
       </Head>
 	  <Header />
-	  <div className="flex justify-between items-center bg-gradient-to-r from-yellow-400 to-yellow-300 border-y border-black py-10 lg:py-0">
+	  <div className="flex justify-between items-center bg-gradient-to-r from-red-400 to-yellow-300 border-y border-black py-10 lg:py-0 rounded rounded-2xl">
 		<div className="px-10 space-y-5">
 			<h1 className="text-6xl max-w-xl font-serif">
 				<span className="underline decoration-black decoration-4">skdev</span> is a my personal blog
@@ -31,7 +31,7 @@ export default function Home({ posts }: Props) {
 	  </div>
 
 	{/* if posts not undefined */}
-	<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 p-2 md:p-6">
+	<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 pt-2 md:pt-6 ">
 		{posts && posts.map((post) => (
 			<Link href={`/blog/${post.slug.current}`} key={post._id}>
 				<div className="border rounded-lg group cursor-pointer overflow-hidden">
@@ -39,10 +39,10 @@ export default function Home({ posts }: Props) {
 					src={urlFor(post.mainImage).url()} alt={post.title} />
 					<div className="flex justify-between p-5 bg-white">
 						<div>
-							<p className="text-lg font-bold">{post.title}</p>
-							<p className="text-xs">{post.description}</p>
+							<p className="text-lg font-bold leading-normal">{post.title}</p>
+							<p className="text-xs mt-2">{post.description}</p>
 						</div>
-						<img className="h-12 w-12 rounded-full" src={urlFor(post.author.image).url()!} alt={post.author.name} />
+						<img className="h-12 w-12 rounded-full ml-5" src={urlFor(post.author.image).url()!} alt={post.author.name} />
 					</div>
 				</div>
 			</Link>
