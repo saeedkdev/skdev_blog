@@ -3,10 +3,10 @@ import { FiGithub } from 'react-icons/fi'
 
 function Hero() {
     return (
-        <div className="flex justify-between items-center bg-gradient-to-r from-red-400 to-yellow-300 border-y border-black py-10 lg:py-0 "> 
+        <div className="flex w-full justify-between items-center bg-gradient-to-r from-red-400 to-yellow-300 border-y border-black py-10 lg:py-0 "> 
             <div className='max-w-7xl flex mx-auto'>
                 <div className="p-[130px] space-y-5 flex-col">
-                    <h1 className="text-6xl max-w-xl font-serif">
+                    <h1 className="text-3xl md:text-6xl max-w-xl font-serif">
                         Learn the <span className="underline decoration-black decoration-4">Craft</span> , Think Like a Pro, Connect with Me
                     </h1>
                     <h2 className="font-serif">

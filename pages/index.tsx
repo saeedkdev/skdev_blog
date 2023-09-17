@@ -15,7 +15,7 @@ interface Props {
 
 export default function Home({ posts }: Props) {
   return (
-    <div className="max-w-full">
+    <div className="w-full">
         <Head>
             <title>SKDEV | Blog</title>
             <link rel="icon" href="/favicon.png" />
