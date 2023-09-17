@@ -10,10 +10,10 @@ function Header() {
 				<h1 className="text-4xl cursor-pointer font-serif">skdev</h1>
 			</Link>
 			<div className="hidden md:inline-flex items-center space-x-5">
-				<Link href="/">
+				<Link href="/about">
 					<h3 className="cursor-pointer">About</h3>
 				</Link>
-				<Link href="http://instagram.com/sk.developer">
+				<Link href="http://twitter.com/saeedkdev">
 					<h3 className="cursor-pointer">Contact</h3>
 				</Link>
 				<Link href="/about">

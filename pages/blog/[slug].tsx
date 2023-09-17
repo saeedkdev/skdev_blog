@@ -46,8 +46,8 @@ export default function Blog(props: Props) {
 	return (
 		<main>
 			<Head>
-				<title>skdev | {post.title}</title>
-				<link rel="icon" href="/favicon.png" />
+                <title>SKDEV | {post.title}</title>
+                <link rel="icon" href="/favicon.png" />
 			</Head>
 			<Header />
 			<img
@@ -130,7 +130,7 @@ export default function Blog(props: Props) {
 			</article>
 			<hr className="max-w-lg my-5 mx-auto border border-red-500" />
 			{submitted ? (
-				<div className="flex flex-col p-10 my-10 bg-yellow-500 text-white max-w-2xl mx-auto">
+				<div className="flex flex-col p-10 my-10 bg-red-400 text-white max-w-2xl mx-auto">
 					<h3 className="text-3xl font-bold">Thank you for your comment</h3>
 					<p>once it has been approved you will see it in the comment section</p>
 				</div>
@@ -154,7 +154,7 @@ export default function Blog(props: Props) {
 						<span className="text-gray-700">Name</span>
 						<input
 							{...register("name", { required: true })}
-							className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-red-500 outline-none focus:ring"
+							className="shadow-xl shadow-slate-100 border rounded py-2 px-3 form-input mt-1 block w-full ring-red-500 outline-none focus:ring"
 							placeholder="Type your name"
 							type="text"
 						/>
@@ -163,7 +163,7 @@ export default function Blog(props: Props) {
 						<span className="text-gray-700">Email</span>
 						<input
 							{...register("email", { required: true })}
-							className="shadow border rounded py-2 px-3 form-input mt-1 block w-full ring-red-500 outline-none focus:ring"
+							className="shadow-xl shadow-slate-100 border rounded py-2 px-3 form-input mt-1 block w-full ring-red-500 outline-none focus:ring"
 							placeholder="email@example.com"
 							type="email"
 						/>
@@ -172,7 +172,7 @@ export default function Blog(props: Props) {
 						<span className="text-gray-700">Comment</span>
 						<textarea
 							{...register("comment", { required: true })}
-							className="shadow rounded border py-2 px-3 form-textarea mt-1 block w-full ring-red-500 outline-none focus:ring"
+							className="shadow-xl shadow-slate-100 rounded border py-2 px-3 form-textarea mt-1 block w-full ring-red-500 outline-none focus:ring"
 							rows={6}
 							placeholder="What did you think?"
 						/>
@@ -197,18 +197,18 @@ export default function Blog(props: Props) {
 					</div>
 					<input
 						type="submit"
-						className="shadow bg-gradient-to-r from-red-400 to-red-300 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
+						className="shadow-xl bg-gradient-to-r from-red-400 to-red-300 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
 						value="Submit"
 					/>
 				</form>
 			)}
 
-			<div className="flex flex-col p-10 my-10 max-w-2xl mx-auto shadow-red-500 shadow space-y-2">
+			<div className="flex flex-col p-10 my-10 max-w-2xl mx-auto shadow-red-100 shadow-2xl space-y-2">
 				<h3 className="text-3xl">Comments</h3>
 				<hr className="pb-2" />
 				{post.comments.map((comment: any) => (
 					<div key={comment._id} className="">
-						<p><span className="text-yellow-500">{comment.name}</span> : {comment.comment}</p>
+						<p><span className="text-red-500">{comment.name}</span> : {comment.comment}</p>
 					</div>
 				))}
 			</div>

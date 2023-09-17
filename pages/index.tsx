@@ -7,6 +7,7 @@ import { sanityClient, urlFor } from "../sanity"
 
 import Header from '../components/Header'
 import { Post } from '../typings'
+import Hero from '../components/Hero'
 
 interface Props {
 	posts: [Post];
@@ -14,41 +15,33 @@ interface Props {
 
 export default function Home({ posts }: Props) {
   return (
-    <div className="max-w-7xl mx-auto">
-      <Head>
-        <title>SKDEV | Blog</title>
-		<link rel="icon" href="/favicon.png" />
-      </Head>
-	  <Header />
-	  <div className="flex justify-between items-center bg-gradient-to-r from-red-400 to-yellow-300 border-y border-black py-10 lg:py-0 rounded rounded-2xl">
-		<div className="px-10 space-y-5">
-			<h1 className="text-6xl max-w-xl font-serif">
-				<span className="underline decoration-black decoration-4">skdev</span> is a my personal blog
-			</h1>
-			<h2 className="font-serif">Learn the art of coding and how to think like a programmer and connect with me</h2>
-		</div>
-		<img className="hidden md:inline-flex h-32 lg:h-full" src="/sk.png" alt="sk" />
-	  </div>
-
-	{/* if posts not undefined */}
-	<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 pt-2 md:pt-6 ">
-		{posts && posts.map((post) => (
-			<Link href={`/blog/${post.slug.current}`} key={post._id}>
-				<div className="border rounded-lg group cursor-pointer overflow-hidden">
-					<img className="h-60 w-full object-cover group-hover:scale-105 transition duration-200" 
-					src={urlFor(post.mainImage).url()} alt={post.title} />
-					<div className="flex justify-between p-5 bg-white">
-						<div>
-							<p className="text-lg font-bold leading-normal">{post.title}</p>
-							<p className="text-xs mt-2">{post.description}</p>
-						</div>
-						<img className="h-12 w-12 rounded-full ml-5" src={urlFor(post.author.image).url()!} alt={post.author.name} />
-					</div>
-				</div>
-			</Link>
-		))}
-	</div>
-
+    <div className="max-w-full">
+        <Head>
+            <title>SKDEV | Blog</title>
+            <link rel="icon" href="/favicon.png" />
+        </Head>
+        <Header />
+        <Hero />
+        {/* if posts not undefined */}
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 pt-2 md:pt-6 ">
+            {posts && posts.map((post) => (
+                <Link href={`/blog/${post.slug.current}`} key={post._id}>
+                    <div className="border rounded-lg group cursor-pointer overflow-hidden">
+                        <img className="h-60 w-full object-cover group-hover:scale-105 transition duration-200" 
+                        src={urlFor(post.mainImage).url()} alt={post.title} />
+                        <div className="flex justify-between p-5 bg-white">
+                            <div>
+                                <p className="text-lg font-bold leading-normal">{post.title}</p>
+                                <p className="text-xs mt-2">{post.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+            ))}
+        </div>
+        <div className="max-w-7xl mx-auto flex justify-center items-center py-10">
+            <h3 className="text-2xl font-serif cursor-pointer">Made for the love of the game</h3>
+        </div>
     </div>
   );
 }
