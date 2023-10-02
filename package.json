@@ -8,6 +8,7 @@
   "dependencies": {
     "@sanity/client": "^3.4.1",
     "@sanity/image-url": "^1.0.1",
+    "@types/react-syntax-highlighter": "^15.5.7",
     "next": "latest",
     "next-compose-plugins": "^2.2.1",
     "next-sanity": "^1.0.0",
