@@ -6,6 +6,7 @@ import Head from "next/head";
 import PortableText from "react-portable-text";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 interface IFormInput {
 	_id: string;
@@ -124,6 +125,11 @@ export default function Blog(props: Props) {
 									{children}
 								</a>
 							),
+                            code: ({ children }: any) => (
+                                <SyntaxHighlighter language="javascript">
+                                    {children}
+                                </SyntaxHighlighter>
+                            ),
 						}}
 					/>
 				</div>
